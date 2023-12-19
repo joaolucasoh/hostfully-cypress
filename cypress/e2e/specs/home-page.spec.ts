@@ -1,9 +1,8 @@
-import { HomePage } from "../page-objects/computer-data-base.page";
+import { HomePage } from "../../support/page_objects/home-page.page";
 
 const home = new HomePage();;
 
 describe('Test', () => {
-    cy.visit('https://computer-database.gatling.io/computers')
     home.inputFilterByName().type('textates');
     home.btnFilterByName();
 })
