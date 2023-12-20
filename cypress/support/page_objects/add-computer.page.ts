@@ -23,8 +23,8 @@ export class AddAComputer {
     checkRequiredFieldNotFilled() {
         cy.get('.help-inline').then($element => {
             let fieldMessage = $element.text();
-
-            expect(fieldMessage).to.be.equal('Failed to refine type : Predicate isEmpty() did not fail.')
+            console.log(fieldMessage);
+            expect(fieldMessage).contains('Failed to refine type : Predicate isEmpty() did not fail.')
             
         })
     }

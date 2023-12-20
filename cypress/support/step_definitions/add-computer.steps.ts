@@ -34,6 +34,7 @@ When("I try to add a new computer without fill in the required field", () => {
 });
 
 Then("I see an error message indicating that the required field was not filled in", () => {
+    computerPage.checkRequiredFieldNotFilled();
 });
 
 When("the computer is not added to the list", () => {
