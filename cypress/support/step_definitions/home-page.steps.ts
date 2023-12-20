@@ -1,7 +1,10 @@
 /*global Given, Then, When */
 
-import { Before, Given } from "@badeball/cypress-cucumber-preprocessor";
+import { Before, Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import { HomePage } from "../page_objects/home-page.page";
+import { AddAComputer } from "../page_objects/add-computer.page";
+
+const computerPage = new AddAComputer();
 const home = new HomePage();
 
 Before(() => {
@@ -9,6 +12,17 @@ Before(() => {
 });
 
 Given("that I am on the add computers page", () => {
-    home.btnAddComputer().click();
-    home.tit
+    home.btnAddComputer().should('be.visible').click();
+}),
+
+When("I fill in all required fields with valid information", () => {
+    computerPage.fillAllFields(); 
+}),
+
+When("I click on the add button", () => {
+    computerPage.buttonCreateComputer().click()
+}),
+
+Then("the computer is added successfully", () => {
+    home.validateCreatedMessage()
 })

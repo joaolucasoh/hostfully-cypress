@@ -16,11 +16,13 @@
   "author": "Joao Lucas Oliveira Hilario",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "latest",
     "@badeball/cypress-cucumber-preprocessor": "latest",
     "@cypress/webpack-preprocessor": "latest",
+    "@faker-js/faker": "^8.3.1",
+    "@types/node": "latest",
     "cypress": "latest",
+    "faker": "^6.6.6",
     "ts-loader": "latest",
-    "typescript": "latest" 
+    "typescript": "latest"
   }
 }

@@ -15,5 +15,12 @@ export class HomePage{
         return cy.get('.computers.zebra-striped').first();
     }
 
-
+    validateCreatedMessage() {
+        cy.get('.alert-message.warning').then($element => {
+            let newCompany = $element.text();
+            const expectedText = `${newCompany}`;
+            
+            expect(expectedText).to.contain(`${newCompany}`);
+        });
+    }
 }
