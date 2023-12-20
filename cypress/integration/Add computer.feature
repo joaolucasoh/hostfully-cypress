@@ -29,7 +29,7 @@ Scenario: Filter computer by name
 
 Scenario: Delete a computer from the list
     Given that I am on the computer listing page
-    And there is a computer in the list with the name "ComputerToDelete"
-    When I select the computer for deletion
+    When there is a computer in the list with the name "MacBook"
+    Then I select the computer for deletion
     And I confirm the deletion
     Then the computer is successfully removed from the list

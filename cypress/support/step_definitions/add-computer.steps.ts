@@ -6,6 +6,7 @@ import { AddAComputer } from "../page_objects/add-computer.page";
 
 const computerPage = new AddAComputer();
 const home = new HomePage();
+let laptopToDelete;
 
 Before(() => {
     cy.visit('/');
@@ -44,7 +45,7 @@ When("I click on the add button", () => {
 }),
 
 Then("the computer is added successfully", () => {
-    home.validateCreatedMessage()
+    home.validateMessage()
 })
 
 When("I filter computers by the name {string}", (computerName:string) => {
@@ -53,6 +54,27 @@ When("I filter computers by the name {string}", (computerName:string) => {
 });
 
 Then("the list displays only computers with the corresponding name", () => {
-    home.validateTableResult()
+    home.validateTableResult('contain')
 });
 
+When("there is a computer in the list with the name {string}", (modelToDelete:string) => {
+    laptopToDelete = modelToDelete;
+    home.inputFilterByName().type(laptopToDelete);
+    home.btnFilterByName().click();
+});
+
+Then("I select the computer for deletion", () => {
+    home.clickOnTheFirstRegisterToDelete(laptopToDelete);
+    computerPage.buttonDeleteComputer().should('be.visible')
+});
+
+When("I confirm the deletion", () => {
+    computerPage.buttonDeleteComputer().click({force: true});
+    home.validateMessage();
+});
+
+Then("the computer is successfully removed from the list", () => {
+    home.inputFilterByName().type(laptopToDelete);
+    home.btnFilterByName().click();
+    home.validateTableResult('not.be.visible');
+});

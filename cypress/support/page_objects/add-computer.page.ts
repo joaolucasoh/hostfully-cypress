@@ -33,6 +33,10 @@ export class AddAComputer {
         return cy.get('input[type="submit"][value="Create this computer"]');
     }
 
+    buttonDeleteComputer() {
+        return cy.get('input[type="submit"][value="Delete this computer"]');
+    }
+
     formatNumberWithLeadingZero(number) {
         return number < 10 ? `0${number}` : number.toString();
     }
